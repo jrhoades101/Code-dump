@@ -46,7 +46,7 @@ if answer == 'yes' or answer == 'Yes':
     print("Original Investment: $" + format(Investment_amount1, ",.2f"))
     print("Interested Earned: $" +format(Interest_earned1, ",.2f" ))
     print("Final Balance: $" +format(Compound_Interest1, ",.2f"))
-    Compare_Investment = input(print("Would you like to compare the first investment to the second?"))
+    Compare_Investment = input("Would you like to compare the first investment to the second?")
     if Compare_Investment == 'yes' or Compare_Investment == 'Yes':
         print("The first option is...................................")
     elif Compare_Investment == 'no' or Compare_Investment == 'No':
