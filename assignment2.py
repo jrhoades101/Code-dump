@@ -34,7 +34,7 @@ print("-----------------------------------")
 
 
 #// I used https://stackoverflow.com/questions/17953940/yes-or-no-output-python to help base the structure of this If/Elif statement and used a lecture powerpoint to figure out the rest.
-answer = (input("Would you like to compare this to another savings option?"))
+answer = (input("Would you like to compare this to another savings option? "))
 if answer == 'yes' or answer == 'Yes':
     Investment_amount1 = float(input('Please enter the amount you want to invest:'))
     Interest_rate1 = float(input('Please enter the interest rate:'))
