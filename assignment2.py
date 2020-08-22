@@ -34,9 +34,9 @@ print("-----------------------------------")
 
 
 #// I used https://stackoverflow.com/questions/17953940/yes-or-no-output-python to help base the structure of this If/Elif statement and used a lecture powerpoint to figure out the rest.
-answer = (input("Would you like to compare this to another savings option? "))
+answer = (input("Would you like to get a second interest evaluation? "))
 if answer == 'yes' or answer == 'Yes':
-    Investment_amount1 = float(input('Please enter the amount you want to invest:'))
+    Investment_amount1 = float(input('Please enter the amount you want to invest: '))
     Interest_rate1 = float(input('Please enter the interest rate:'))
     Compoundings_year1 = float(input('Please enter the amount of compounds you want per year: '))
     Years_of_interest1 = float(input('Please enter the amount of years for the investment: '))
@@ -46,11 +46,16 @@ if answer == 'yes' or answer == 'Yes':
     print("Original Investment: $" + format(Investment_amount1, ",.2f"))
     print("Interested Earned: $" +format(Interest_earned1, ",.2f" ))
     print("Final Balance: $" +format(Compound_Interest1, ",.2f"))
+    print("-----------------------------------")
+    print("-----------------------------------")
     Compare_Investment = input("Would you like to compare the first investment to the second? ")
     if Compare_Investment == 'yes' or Compare_Investment == 'Yes':
-        print("The first option is...................................")
+        if Compound_Interest1 >= Compound_Interest:
+            print("The second option will result in a larger account balance.")
+        elif Compound_Interest1 <= Compound_Interest:
+            print("The first option will result in the larger final account balance.")
     elif Compare_Investment == 'no' or Compare_Investment == 'No':
-        print("Thank you for getting a second savings evaluation!")
+        print("Thank you for getting a second interest evaluation!")
 elif answer == 'no' or answer == 'No':
     print("Thank you for using the Compound Investment Calculator!")
 
