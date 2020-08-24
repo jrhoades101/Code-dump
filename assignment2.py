@@ -28,8 +28,8 @@ Interest_earned = (Compound_Interest - Investment_amount)
 #// https://thepythonguru.com/python-string-formatting/
 #// I display what the original investment was, then show the amount of interested earned, and what the final balance was.
 print("Original Investment: $" + format(Investment_amount, ",.2f"))
-print("Interested Earned: $" +format(Interest_earned, ",.2f" ))
-print("Final Balance: $" +format(Compound_Interest, ",.2f"))
+print("Interest Earned:     $" +format(Interest_earned, ",.2f" ))
+print("Final Balance:       $" +format(Compound_Interest, ",.2f"))
 print("-----------------------------------")
 print("-----------------------------------")
 
@@ -54,8 +54,8 @@ if answer == 'yes' or answer == 'Yes':
     Interest_earned2 = (Compound_Interest2 - Investment_amount2)
 
     print("Original Investment: $" + format(Investment_amount2, ",.2f"))
-    print("Interested Earned: $" +format(Interest_earned2, ",.2f" ))
-    print("Final Balance: $" +format(Compound_Interest2, ",.2f"))
+    print("Interest Earned:     $" +format(Interest_earned2, ",.2f" ))
+    print("Final Balance:       $" +format(Compound_Interest2, ",.2f"))
     print("-----------------------------------")
     print("-----------------------------------")
 
@@ -63,9 +63,9 @@ if answer == 'yes' or answer == 'Yes':
 
     if Compare_Investment == 'yes' or Compare_Investment == 'Yes':
         if Compound_Interest2 >= Compound_Interest:
-            print("The second option will result in a larger account balance.")
+            print("The second investment will result in a larger account balance.")
         elif Compound_Interest2 <= Compound_Interest:
-            print("The first option will result in the larger final account balance.")
+            print("The first investment will result in the larger final account balance.")
     elif Compare_Investment == 'no' or Compare_Investment == 'No':
         print("Thank you for getting a second interest evaluation!")
 
