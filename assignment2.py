@@ -5,16 +5,16 @@ print("Enjoy the free use of this Compound Interest Calculator!")
 print("-----------------------------------")
 
 #P is the initial amount of the investment
-Investment_amount = float(input('Please enter the amount of money you want to invest: '))
+Investment_amount = float(input('Please enter the amount of money you want to invest (e.g. 25000): '))
 
 #r is the interest rate
 Interest_rate = float(input('Please enter the interest rate (e.g., ".03" for 3% interest): '))
 
 #n is the number of compoundings per year
-Compoundings_year = float(input('Please enter the amount of compounds you want per year: '))
+Compoundings_year = float(input('Please enter the amount of compounds you want per year (e.g., 12 for monthly compounding, 4 for quarterly, 1 for annual): '))
 
 #t is the number of years of internet
-Years_of_interest = float(input('Please enter the amount of years for the investment: '))
+Years_of_interest = float(input('Please enter the amount of years for the investment (e.g. 5): '))
 
 #// This formula was provided through the assignment page. I was able to find the operators through https://www.tutorialspoint.com/python/python_basic_operators.htm
 Compound_Interest = (Investment_amount * (1 + (Interest_rate / Compoundings_year)) ** (Years_of_interest * Compoundings_year))
@@ -39,13 +39,13 @@ print("-----------------------------------")
 answer = (input("Would you like to get a second interest evaluation? (Yes/No) "))
 
 if answer == 'yes' or answer == 'Yes':
-    Investment_amount2 = float(input('Please enter the amount of money you want to invest: '))
+    Investment_amount2 = float(input('Please enter the amount of money you want to invest (e.g. 25000): '))
 
     Interest_rate2 = float(input('Please enter the interest rate (e.g., ".03"" for 3% interest): '))
 
-    Compoundings_year2 = float(input('Please enter the amount of compounds you want per year: '))
+    Compoundings_year2 = float(input('Please enter the amount of compounds you want per year (e.g., 12 for monthly compounding, 4 for quarterly, 1 for annual): '))
 
-    Years_of_interest2 = float(input('Please enter the amount of years for the investment: '))
+    Years_of_interest2 = float(input('Please enter the amount of years for the investment (e.g. 5): '))
 
     Compound_Interest2 = (Investment_amount2 * (1 + (Interest_rate2 / Compoundings_year2)) ** (Years_of_interest2 * Compoundings_year2))
 
@@ -71,6 +71,6 @@ if answer == 'yes' or answer == 'Yes':
 
 elif answer == 'no' or answer == 'No':
     print("Thank you for using the Compound Investment Calculator!")
-
+else: print ("Invalid response entered. Program will now end.")
 
 
