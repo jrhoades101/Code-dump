@@ -8,17 +8,15 @@ if answer == 'single' or answer == 'Single':
     value = float(input("Enter a positive integer value: "))
     babylonian = value
     b = value
-    m = 1
-    e = 0.0001
-    while (b - m > e):
-        b = (b + m) / 2
-        m = value / b
-    print(b)
-    square_root = m
+    method = 1
+    epsilon = 0.0001
+    while (b - method > epsilon):
+        b = (b + method) / 2
+        method = value / b
+    square_root = method
     while value < 0:
         print("Error! Please enter an integer that is above 0.")
         value = float(input("Enter a positive integer value: "))
-    #square_root = float(value ** (1 / 2))
     print("Value     Square Root")
     print(int(value), "       ", format(square_root, ".3f"))
 
@@ -26,6 +24,8 @@ if answer == 'single' or answer == 'Single':
 
 elif answer == 'range' or answer == 'Range':
     range_start = float(input("Enter a positive integer value to start your range: "))
+
+
     while range_start < 0:
         print("Error! Please enter an integer that is above 0.")
         range_start = float(input("Enter a positive integer value to start your range: "))
@@ -38,9 +38,18 @@ elif answer == 'range' or answer == 'Range':
         range_start = float(input("Enter a positive integer value to start your range: "))
         range_end = float(input("Enter a positive integer value to end your range: "))
     loop_start = range_start
-    square_root = float(range_start**(1 / 2)) and float(range_start**(1 / 2))
+
     print("Value     Square Root")
+
     for v in range(int(range_start), int(range_end + 1)):
+        babylonian = loop_start
+        b = loop_start
+        method = 1
+        epsilon = 0.0001
+        while (b - method > epsilon):
+            b = (b + method) / 2
+            method = loop_start / b
+        square_root = method
         print('{:3d}'.format(int(loop_start)),"     ",format(square_root, ".3f"))
         loop_start += 1
 
