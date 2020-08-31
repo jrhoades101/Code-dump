@@ -1,14 +1,26 @@
 _author_ = 'Joshua Rhoades, jrhoades@email.unc.edu, Onyen = jrhoades'
 
+
 answer = input("Enter 'single' or 'range' to solve for a single square root or a range of values, respectively: ")
+
+
 if answer == 'single' or answer == 'Single':
     value = float(input("Enter a positive integer value: "))
+    babylonian = value
+    b = value
+    m = 1
+    e = 0.0001
+    while (b - m > e):
+        b = (b + m) / 2
+        m = value / b
+    print(b)
+    square_root = m
     while value < 0:
         print("Error! Please enter an integer that is above 0.")
         value = float(input("Enter a positive integer value: "))
-    square_root = float(value ** (1 / 2))
+    #square_root = float(value ** (1 / 2))
     print("Value     Square Root")
-    print(value, "       ", format(square_root, ".3f"))
+    print(int(value), "       ", format(square_root, ".3f"))
 
 
 
