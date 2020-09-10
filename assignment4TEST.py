@@ -23,7 +23,7 @@ def deal_card():
 
 # handles the initial deal of two cards to the player and the "HIT or STAY" loop. It should return the final player score.
 def get_player_score():
-    player_card = deal_card
+    player_card = deal_card()
     print("Your hand now has a value of", str(player_card) + "." )
     answer = input("Would you like to hit or stay?")
     # while answer != 'EXIT':
