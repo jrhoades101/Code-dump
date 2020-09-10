@@ -2,10 +2,6 @@ _author_ = 'Joshua Rhoades, jrhoades@email.unc.edu, Onyen = jrhoades'
 
 import random
 
-card_value = None
-card_total = None
-dealer_card = None
-
 
 # Generate a card value for the player (using random).
 def deal_card():
