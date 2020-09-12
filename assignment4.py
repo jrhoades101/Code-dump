@@ -24,7 +24,10 @@ def get_player_score():
             loop = input("Would you like to play again? (y/n) ")
             if loop == "Y" or loop == "y":
                 main()
+            if loop == "N" or loop == "n":
+                exit()
             else:
+                print("Invalid input, now exiting the program.")
                 exit()
         print("Your hand now has a total value of", str(player_sum) + ".")
         answer = input("Would you like to hit or stay? ")
@@ -32,7 +35,7 @@ def get_player_score():
         print("Your hand now has a total of", str(player_sum) + ".")
         return player_sum
     else:
-        print("Invalid input, exiting the program.")
+        print("Invalid input, now exiting the program.")
         exit()
 
 
@@ -62,8 +65,10 @@ def main():
     answer = input("Would you like to play again? (y/n) ")
     while answer == "Y" or answer == "y":
         main()
-    exit()
-
+    if answer == "N" or answer == "n":
+        exit()
+    else:
+        print("Invalid input, now exiting the program.")
 
 
 main()
