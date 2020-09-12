@@ -7,6 +7,7 @@ import random
 def deal_card():
     # Generates a random integer value from 1 to 10 with 10 being 4x as likely.
     card_one = random.randint(1, 13)
+    # If the random number from card_one is between 11-13, it is turned into a 10.
     if card_one == 11 or card_one == 12 or card_one == 13:
         card_one = 10
     # Returns the card value that was randomly chosen above.
@@ -23,7 +24,7 @@ def get_player_score():
     while answer == "Hit" or answer == "hit":
         # Adds an additional random value from the function 'deal_card()' to the player_sum variable.
         player_sum += deal_card()
-        # If player_sum is greater than 21, player busts but is given the option to play the game again.
+        # If player_sum is greater than 21, the player will bust but is given the option to play the game again.
         if player_sum > 21:
             print("You BUSTED with a total value of", str(player_sum) + "!")
             print("** You lose. **")
@@ -33,6 +34,7 @@ def get_player_score():
                 main()
             elif loop == "N" or loop == "n":
                 exit()
+            # If anything other than 'Y or N' is inputted, it results in an invalid input and ends the program.
             else:
                 print("Invalid input, now exiting the program.")
                 exit()
@@ -42,7 +44,7 @@ def get_player_score():
     if answer == 'Stay' or answer == 'stay':
         print("Your hand now has a total of", str(player_sum) + ".")
         return player_sum
-    # If anything else is inputted, it results in a invalid input and ends the program.
+    # If anything other than 'Hit or Stay' is inputted, it results in an invalid input and ends the program.
     else:
         print("Invalid input, now exiting the program.")
         exit()
@@ -59,6 +61,7 @@ def get_dealer_score():
         if dealer_total > 21:
             print("The dealer BUSTED with a value of", str(dealer_total) + "!")
             return dealer_total
+        # If dealer_total is greater than or equal to 16 and greater than or equal to 21, the program will print the dealer's hand and return the value of the variable.
         elif dealer_total >= 16 and dealer_total <= 21:
             print("The dealer was dealt a hand of", str(dealer_total) + ".")
             return dealer_total
@@ -69,24 +72,26 @@ def get_dealer_score():
 
 # The main function which includes the main loop that repeats each hand.
 def main():
+    # Variables are initialized by linking with functions get_player_score() and get_dealer_score().
     final_player_score = get_player_score()
     final_dealer_score = get_dealer_score()
-    # If statement that will check to see if final player score is greater than the deal or if dealer score is over 21.
+    # If statement that will check to see if final_player_score is greater than final_dealer_score or if final_dealer_score is greater than 21.
     if final_player_score > final_dealer_score or final_dealer_score > 21:
         print("** You win! **")
     else:
         print("** You lose. **")
-    # Loop that will ask the player if they would like to play again.
+    # Loop that will ask the user if they would like to play again.
     answer = input("Would you like to play again? (y/n) ")
     while answer == "Y" or answer == "y":
         main()
     if answer == "N" or answer == "n":
         exit()
+    # If anything other than 'Y or N' is inputted, the program will quit due to an invalid input.
     else:
         print("Invalid input, now exiting the program.")
         exit()
 
-
+# main() starts the program by executing the function.
 main()
 
 
