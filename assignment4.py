@@ -3,9 +3,9 @@ _author_ = 'Joshua Rhoades, jrhoades@email.unc.edu, Onyen = jrhoades'
 import random
 
 
-# Generates a card value for the player at random. The value are between 1 and 10, with 10 being 4x likely.
+# Generates a card value for the player at random. The values are between 1 and 10, with 10 being 4x likely.
 def deal_card():
-    # Generates a random integer value from 1 to 10 with 10 being 4x as likely.
+    # Generates a random integer value from 1 to 13.
     card_one = random.randint(1, 13)
     # If the random number from card_one is between 11-13, it is turned into a 10.
     if card_one == 11 or card_one == 12 or card_one == 13:
@@ -16,7 +16,7 @@ def deal_card():
 
 # Handles the initial deal of two cards to the player and the "HIT or STAY" loop, returns the final player score.
 def get_player_score():
-    # player_sum adds together two random values that were drawn randomly in the function 'deal_card()'.
+    # player_sum adds together two random values that were drawn in the function 'deal_card()'.
     player_sum = deal_card() + deal_card()
     print("Your hand of two cards now has a value of", str(player_sum) + ".")
     # This while loop preforms the 'Hit or Stay' loop.
@@ -56,12 +56,13 @@ def get_dealer_score():
     dealer_total = deal_card() + deal_card()
     # This while loop is performed when the dealer card value is less than 16.
     while dealer_total < 16:
+        # Another random value between 1-10 is added if dealer_total is below 16.
         dealer_total += deal_card()
         # If dealer_total is greater than 21, the dealer will bust.
         if dealer_total > 21:
             print("The dealer BUSTED with a value of", str(dealer_total) + "!")
             return dealer_total
-        # If dealer_total is greater than or equal to 16 and greater than or equal to 21, the program will print the dealer's hand and return the value of the variable.
+        # The dealer's hand will be printed if between 16 and 21.
         elif dealer_total >= 16 and dealer_total <= 21:
             print("The dealer was dealt a hand of", str(dealer_total) + ".")
             return dealer_total
@@ -75,7 +76,7 @@ def main():
     # Variables are initialized by linking with functions get_player_score() and get_dealer_score().
     final_player_score = get_player_score()
     final_dealer_score = get_dealer_score()
-    # If statement that will check to see if final_player_score is greater than final_dealer_score or if final_dealer_score is greater than 21.
+    # The user will win if player score is greater than the dealer, or if dealer goes over 21.
     if final_player_score > final_dealer_score or final_dealer_score > 21:
         print("** You win! **")
     else:
