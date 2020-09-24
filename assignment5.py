@@ -1,1 +1,63 @@
+_author_ = 'Joshua Rhoades, jrhoades@email.unc.edu, Onyen = jrhoades'
+
+
+
+
+
+# Prompt the user to enter the name of the input file, making sure that the file exists and asking the user to re-enter a filename if needed.
+
+
+
+# Prompt the user to enter the name of an output file. The output file should be erased/overwritten if an old one with the same name exists.
+
+
+
+# Read the input file, assign grades as appropriate for the type of student (GRAD vs. UNDERGRAD), and write the output to file.
+
+
+
+# Gracefully handle errors in the input file. In particular, your program should catch errors such as invalid numbers for grades, or student categories that are not "GRAD" or "UNDERGRAD".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
