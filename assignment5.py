@@ -1,6 +1,6 @@
 _author_ = 'Joshua Rhoades, jrhoades@email.unc.edu, Onyen = jrhoades'
 
-# Initializes the curve for the grades.
+# A set of variables that are being initialized.
 curve_grade = 0
 count = 0
 name = ""
@@ -42,10 +42,11 @@ while line != '':
 
     # The file will sort names and grade if 'GRAD' is read.
     if line == 'GRAD':
+        
         # Reads the name
-        name = line
         line = input_file.readline()
         line = line.rstrip('\n')
+        name = line
 
         # Reads the grade.
         line = input_file.readline()
@@ -77,12 +78,14 @@ while line != '':
             print("Unknown grade detected (" + str(line) + ").")
             print("Error occurred while determining letter grade. Aborting.")
             count += 1
+
     # The file will sort names and grade if 'UNDERGRAD' is read.
     elif line == 'UNDERGRAD':
+        
         # Reads the name.
-        name = line
         line = input_file.readline()
         line = line.rstrip('\n')
+        name = line       
 
         # Reads the grade.
         line = input_file.readline()
@@ -118,7 +121,7 @@ while line != '':
             print("Error occurred while determining letter grade. Aborting.")
             count += 1
 
-    # If an error is caught, it will be processed and the program will gently end.
+    # If an error is caught, it will be shown and the program will gently end.
     else:
         print("Unknown student category detected (" + str(line) + ").")
         print("Error occurred while determining letter grade. Aborting.")
@@ -130,7 +133,7 @@ while line != '':
     line = input_file.readline()
     line = line.rstrip('\n')
 
-# Confirmation message that the files were processed and saved.
+# Confirmation message that the files were processed and saved if everything goes smoothly.
 if count == 0:
     print("All data was successfully processed and saved to the requested output file.")
 
@@ -138,8 +141,7 @@ if count == 0:
 input_file.close()
 output_file.close()
 
-# Gracefully handle errors in the input file. In particular, your program should catch errors such as invalid numbers
-# for grades, or student categories that are not "GRAD" or "UNDERGRAD".
+
 
 
 
