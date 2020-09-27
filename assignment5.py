@@ -3,6 +3,8 @@ _author_ = 'Joshua Rhoades, jrhoades@email.unc.edu, Onyen = jrhoades'
 # Initializes the curve for the grades.
 curve_grade = 0
 
+name = ""
+
 # Prompts the user to enter the name of a input file, making sure that the file exists and asks the user to re-enter a filename if needed.
 first_file = None
 
@@ -19,13 +21,13 @@ while first_file is None:
 second_file = input("Please enter the name of the output data file: ")
 output_file = open(second_file, 'w')
 
-
 # Asks the user if they want to curve grades.
 answer = input("Would you like to curve the grades? (Y/N) ")
 if answer == 'Y' or answer == 'y':
     curve_grade = int(input("Please enter the score that should map to a '100%' grade: "))
-
-
+    while curve_grade <= 0:
+        print("Invalid curve grade input, please enter grade between 1-100.")
+        curve_grade = int(input("Please enter the score that should map to a '100%' grade: "))
 
 # Read the input file, assign grades as appropriate for the type of student (GRAD vs. UNDERGRAD), and write the output to file.
 line = input_file.readline()
@@ -38,26 +40,35 @@ while line != '':
         line = line.rstrip('\n')
 
         # Prints the name.
-        line = output_file.write(line)
+        name = line
         line = input_file.readline()
         line = int(line.rstrip('\n'))
 
         if answer == 'Y' or answer == 'y':
-            final_curve = 100 / curve_grade
-            line *= final_curve
+            try:
+                final_curve = 100 / curve_grade
+                line *= final_curve
+            except ZeroDivisionError:
+                if curve_grade <= 0:
+                    print("The curve grade was below 0, try again. ")
 
         # Will sort the grade based on the global variables.
         if line >= 95:
+            output_file.write(name)
             output_file.write('\nH\n')
         elif line >= 80 and line < 95:
+            output_file.write(name)
             output_file.write('\nP\n')
         elif line >= 70 and line < 80:
+            output_file.write(name)
             output_file.write('\nL\n')
         elif line >= 0 and line < 70:
+            output_file.write(name)
             output_file.write('\nF\n')
         else:
             print("Unknown grade detected (" + str(line) + ").")
             print("Error occurred while determining letter grade. Aborting.")
+
 
     # The file will sort names and grade if 'UNDERGRAD' is read.
     elif line == 'UNDERGRAD':
@@ -65,24 +76,33 @@ while line != '':
         line = line.rstrip('\n')
 
         # Prints the name.
-        line = output_file.write(line)
+        name = line
         line = input_file.readline()
         line = int(line.rstrip('\n'))
 
         if answer == 'Y' or answer == 'y':
-            final_curve = 100 / curve_grade
-            line *= final_curve
+            try:
+                final_curve = 100 / curve_grade
+                line *= final_curve
+            except ZeroDivisionError:
+                if curve_grade <= 0:
+                    print("The curve grade was below 0, try again. ")
 
         # Will sort the grade based on the global variables.
         if line >= 90:
+            output_file.write(name)
             output_file.write('\nA\n')
         elif line >= 80 and line < 90:
+            output_file.write(name)
             output_file.write('\nB\n')
         elif line >= 70 and line < 80:
+            output_file.write(name)
             output_file.write('\nC\n')
         elif line >= 60 and line < 70:
+            output_file.write(name)
             output_file.write('\nD\n')
         elif line >= 0 and line < 60:
+            output_file.write(name)
             output_file.write('\nF\n')
         else:
             print("Unknown grade detected (" + str(line) + ").")
@@ -94,7 +114,6 @@ while line != '':
         print("Error occurred while determining letter grade. Aborting.")
         input_file.readline()
         input_file.readline()
-
 
     # Reads the lines in the files.
     line = input_file.readline()
