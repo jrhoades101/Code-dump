@@ -24,10 +24,16 @@ output_file = open(second_file, 'w')
 # Asks the user if they want to curve grades.
 answer = input("Would you like to curve the grades? (Y/N) ")
 if answer == 'Y' or answer == 'y':
-    curve_grade = int(input("Please enter the score that should map to a '100%' grade: "))
-    while curve_grade <= 0:
-        print("Invalid curve grade input, please enter grade between 1-100.")
-        curve_grade = int(input("Please enter the score that should map to a '100%' grade: "))
+    while curve_grade == 0:
+        try:
+            curve_grade = int(input("Please enter the score that should map to a '100%' grade: "))
+            while curve_grade <= 0 or curve_grade > 100:
+                print("Invalid curve grade input, please enter grade between 1-100.")
+                curve_grade = int(input("Please enter the score that should map to a '100%' grade: "))
+        except ValueError:
+            print("Please only enter numbers between 1-100 for the curved grade.")
+            curve_grade = 0
+
 
 # Read the input file, assign grades as appropriate for the type of student (GRAD vs. UNDERGRAD), and write the output to file.
 line = input_file.readline()
@@ -78,7 +84,7 @@ while line != '':
         line = input_file.readline()
         line = line.rstrip('\n')
 
-        # Reads the grade.        
+        # Reads the grade.
         line = input_file.readline()
         line = int(line.rstrip('\n'))
 
@@ -111,7 +117,7 @@ while line != '':
             print("Unknown grade detected (" + str(line) + ").")
             print("Error occurred while determining letter grade. Aborting.")
             count += 1
-            
+
     # If an error is caught, it will be processed and the program will gently end.
     else:
         print("Unknown student category detected (" + str(line) + ").")
