@@ -42,15 +42,29 @@ while line != '':
 
     # The file will sort names and grade if 'GRAD' is read.
     if line == 'GRAD':
-        
+
         # Reads the name
         line = input_file.readline()
         line = line.rstrip('\n')
         name = line
 
         # Reads the grade.
-        line = input_file.readline()
-        line = int(line.rstrip('\n'))
+        try:
+            line = input_file.readline()
+            line = int(line.rstrip('\n'))
+        except ValueError:
+            print("Unknown grade detected (" + str(line) + ").")
+            print("Error occurred while determining letter grade.")
+            print("Please retry the program. Now Aborting.")
+            input_file.close()
+            count += 1
+
+        except TypeError:
+            print("Unknown grade detected (" + str(line) + ").")
+            print("Error occurred while determining letter grade.")
+            input_file.close()
+            print("Please retry the program. Now Aborting.")
+            count += 1
 
         # If statement based on if the user wants to curve the grades.
         if answer == 'Y' or answer == 'y':
@@ -76,16 +90,18 @@ while line != '':
             output_file.write('\nF\n')
         else:
             print("Unknown grade detected (" + str(line) + ").")
-            print("Error occurred while determining letter grade. Aborting.")
+            print("Error occurred while determining letter grade.")
+            input_file.close()
+            print("Please retry the program. Now Aborting.")
             count += 1
 
     # The file will sort names and grade if 'UNDERGRAD' is read.
     elif line == 'UNDERGRAD':
-        
+
         # Reads the name.
         line = input_file.readline()
         line = line.rstrip('\n')
-        name = line       
+        name = line
 
         # Reads the grade.
         line = input_file.readline()
@@ -117,21 +133,34 @@ while line != '':
             output_file.write(name)
             output_file.write('\nF\n')
         else:
+            # try:
             print("Unknown grade detected (" + str(line) + ").")
-            print("Error occurred while determining letter grade. Aborting.")
+            print("Error occurred while determining letter grade.")
+            print("Please retry the program. Now Aborting.")
+            input_file.close()
             count += 1
+            # except ValueError:
+            #     print("Please retry the program. Now Aborting.")
+            #     count += 1
 
     # If an error is caught, it will be shown and the program will gently end.
     else:
-        print("Unknown student category detected (" + str(line) + ").")
-        print("Error occurred while determining letter grade. Aborting.")
-        input_file.readline()
-        input_file.readline()
-        count += 1
+        try:
+            print("Unknown student category detected (" + str(line) + ").")
+            print("Error occurred while determining the name.")
+            input_file.close()
+            count += 1
+        except ValueError:
+            print("Please retry the program.")
+            count += 1
 
     # Reads the lines in the files.
-    line = input_file.readline()
-    line = line.rstrip('\n')
+    try:
+        line = input_file.readline()
+        line = line.rstrip('\n')
+    except ValueError:
+        # Ends the loop if a ValueError is found.
+        line = ''
 
 # Confirmation message that the files were processed and saved if everything goes smoothly.
 if count == 0:
