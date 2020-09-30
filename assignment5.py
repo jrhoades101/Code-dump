@@ -14,6 +14,7 @@ while first_file is None:
     try:
         first_file = input("Please enter the name of the input data file: ")
         input_file = open(first_file, 'r')
+
     # If an error is found it will go through this loop and repeat until a proper file is found.
     except FileNotFoundError:
         print("File does not exist. Please enter a valid input data file.")
@@ -36,7 +37,7 @@ while invalid_input == 0:
     if answer == 'Y' or answer == 'y' or answer == 'N' or answer == 'n':
         invalid_input += 1
 
-# If statement if the user does want to curve the grades.
+# If statement that is triggered if the user does want to curve the grades.
 if answer == 'Y' or answer == 'y':
     while curve_grade == 0:
         try:
@@ -107,6 +108,7 @@ while line != '':
                 count += 1
         except TypeError:
             print("Error occurred while determining letter grade.")
+            count += 1
 
     # The file will sort names and grade if 'UNDERGRAD' is read.
     elif line == 'UNDERGRAD':
@@ -163,6 +165,7 @@ while line != '':
                 count += 1
         except TypeError:
             print("Error occurred while determining letter grade.")
+            count += 1
 
     # If an error is caught, the error will be shown and the file will close, gently ending the program.
     else:
@@ -180,7 +183,7 @@ while line != '':
         line = input_file.readline()
         line = line.rstrip('\n')
     except ValueError:
-        
+
         # Ends the while loop if a ValueError is found.
         print("Please retry the program. Now Aborting.")
         line = ''
