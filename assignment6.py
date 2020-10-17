@@ -88,43 +88,51 @@ def check_out():
 
 
 # Adds a new book
-def new_book():
+def add_book():
     print("Please enter the following attributes for the new book.")
-    new_title = input("Title: ")
-    new_author = input("Author: ")
-    new_publisher = input("Publisher: ")
-    new_pages = input("Pages: ")
-    new_year = input("Year: ")
-    new_copies = input("Copies: ")
-    new_available = input("Available: ")
-    print("You have entered the following data:")
-    print(new_title)
-    print(new_author)
-    print(new_publisher)
-    print(new_pages)
-    print(new_year)
-    print(new_copies)
-    print(new_available)
+    # new_title = input("Title: ")
+    # new_author = input("Author: ")
+    # new_publisher = input("Publisher: ")
+    # new_pages = input("Pages: ")
+    # new_year = input("Year: ")
+    # new_copies = input("Copies: ")
+    # new_available = input("Available: ")
+    # print("You have entered the following data:")
+    # print(new_title)
+    # print(new_author)
+    # print(new_publisher)
+    # print(new_pages)
+    # print(new_year)
+    # print(new_copies)
+    # print(new_available)
 
 
 # Adds a new movie
-def new_movie():
-    return Noneprint("Please enter the following attributes for the new movie.")
-    new_title = input("Title: ")
-    new_director = input("Director: ")
-    new_genre = input("Genre: ")
-    new_length = input("Length: ")
-    new_year = input("Year: ")
-    new_copies = input("Copies: ")
-    new_available = input("Available: ")
-    print("You have entered the following data:")
-    print(new_title)
-    print(new_director)
-    print(new_genre)
-    print(new_length)
-    print(new_year)
-    print(new_copies)
-    print(new_available)
+def add_movie(load_collections):
+    print("Please enter the following attributes for the new movie.")
+    # print(load_collections())
+    # new_title = input("Title: ")
+    # load_collections(['Title']) = new_title
+    # new_director = input("Director: ")
+    # load_collections(['Director']) = new_director
+    # new_genre = input("Genre: ")
+    # load_collections(['Genre']) = new_genre
+    # new_length = input("Length: ")
+    # load_collections(['Length']) = new_length
+    # new_year = input("Year: ")
+    # load_collections(['Year']) = new_year
+    # new_copies = input("Copies: ")
+    # load_collections(['Copies']) = new_copies
+    # new_available = input("Available: ")
+    # load_collections(['Available']) = new_available
+    # print("You have entered the following data:")
+    # print('Title: ', new_title)
+    # print('Director: ', new_director)
+    # print('Genre: ', new_genre)
+    # print('Length: ', new_length)
+    # print('Year: ', new_year)
+    # print('Copies: ', new_copies)
+    # print('Available: ', new_available)
 
 
 # Displays the items in the collection
@@ -134,25 +142,18 @@ def display_collection(load_collections):
     for key in load_collections.values():
         print("ID: ", key['ID'])
         print("Title:", key['Title'])
-        if key == ['Author']:
-            try:
-                print("Director:", key['Director'])
-            except KeyError:
-                print("Author:", key['Author'])
-        else:
-            try:
-                print("Director:", key['Director'])
-            except KeyError:
-                print("Author:", key['Author'])
-            try:
-                print("Genre:", key['Genre'])
-            except KeyError:
-                print("Publisher:", key['Publisher'])
-            try:
-                print("Length:", key['Length'])
-            except KeyError:
-                print("Pages:", key['Pages'])
-
+        try:
+            print("Director:", key['Director'])
+        except KeyError:
+            print("Author:", key['Author'])
+        try:
+            print("Genre:", key['Genre'])
+        except KeyError:
+            print("Publisher:", key['Publisher'])
+        try:
+            print("Length:", key['Length'])
+        except KeyError:
+            print("Pages:", key['Pages'])
         print("Year:", key['Year'])
         print("Copies:", key['Copies'])
         print("Available:", key['Available'])
