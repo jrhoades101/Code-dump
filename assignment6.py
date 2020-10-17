@@ -90,17 +90,41 @@ def check_out():
 # Adds a new book
 def new_book():
     print("Please enter the following attributes for the new book.")
-    input("Title: ")
-    input("Author: ")
-    input("Publisher: ")
-    input("Pages: ")
-    input("Year: ")
-    input("Copies: ")
+    new_title = input("Title: ")
+    new_author = input("Author: ")
+    new_publisher = input("Publisher: ")
+    new_pages = input("Pages: ")
+    new_year = input("Year: ")
+    new_copies = input("Copies: ")
+    new_available = input("Available: ")
+    print("You have entered the following data:")
+    print(new_title)
+    print(new_author)
+    print(new_publisher)
+    print(new_pages)
+    print(new_year)
+    print(new_copies)
+    print(new_available)
 
 
 # Adds a new movie
 def new_movie():
-    return None
+    return Noneprint("Please enter the following attributes for the new movie.")
+    new_title = input("Title: ")
+    new_director = input("Director: ")
+    new_genre = input("Genre: ")
+    new_length = input("Length: ")
+    new_year = input("Year: ")
+    new_copies = input("Copies: ")
+    new_available = input("Available: ")
+    print("You have entered the following data:")
+    print(new_title)
+    print(new_director)
+    print(new_genre)
+    print(new_length)
+    print(new_year)
+    print(new_copies)
+    print(new_available)
 
 
 # Displays the items in the collection
