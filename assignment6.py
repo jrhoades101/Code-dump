@@ -90,40 +90,17 @@ def check_out():
 # Adds a new book
 def new_book():
     print("Please enter the following attributes for the new book.")
-    new_title = input("Title: ")
-    new_author = input("Author: ")
-    new_publisher = input("Publisher: ")
-    new_pages = input("Pages: ")
-    new_year = input("Year: ")
-    new_copies = input("Copies: ")
-    new_available = input("Available: ")
-    print("You have entered the following data:")
-    print(new_title)
-    print(new_author)
-    print(new_publisher)
-    print(new_pages)
-    print(new_year)
-    print(new_copies)
-    print(new_available)
+    input("Title: ")
+    input("Author: ")
+    input("Publisher: ")
+    input("Pages: ")
+    input("Year: ")
+    input("Copies: ")
+
 
 # Adds a new movie
 def new_movie():
-    print("Please enter the following attributes for the new movie.")
-    new_title = input("Title: ")
-    new_director = input("Director: ")
-    new_genre = input("Genre: ")
-    new_length = input("Length: ")
-    new_year = input("Year: ")
-    new_copies = input("Copies: ")
-    new_available = input("Available: ")
-    print("You have entered the following data:")
-    print(new_title)
-    print(new_director)
-    print(new_genre)
-    print(new_length)
-    print(new_year)
-    print(new_copies)
-    print(new_available)
+    return None
 
 
 # Displays the items in the collection
@@ -134,17 +111,24 @@ def display_collection(load_collections):
         print("ID: ", key['ID'])
         print("Title:", key['Title'])
         if key == ['Author']:
-            print("Author:", key['Author'])
+            try:
+                print("Director:", key['Director'])
+            except KeyError:
+                print("Author:", key['Author'])
         else:
-            print("Director:", key['Director'])
-        if key == ['Publisher']:
-            print("Publisher:", key['Publisher'])
-        else:
-            print("Genre:", key['Genre'])
-        if key == ['Pages']:
-            print("Pages:", key['Pages'])
-        else:
-            print("Length:", key['Length'])
+            try:
+                print("Director:", key['Director'])
+            except KeyError:
+                print("Author:", key['Author'])
+            try:
+                print("Genre:", key['Genre'])
+            except KeyError:
+                print("Publisher:", key['Publisher'])
+            try:
+                print("Length:", key['Length'])
+            except KeyError:
+                print("Pages:", key['Pages'])
+
         print("Year:", key['Year'])
         print("Copies:", key['Copies'])
         print("Available:", key['Available'])
@@ -152,13 +136,8 @@ def display_collection(load_collections):
 
 
 # Search for a certain parameter
-def query_collection(load_collections):
-    # Will match the string to the book and movie collection
-    search_query = input("Enter a query string to use for the search: ")
-    if search_query in load_collections:
-        print(load_collections[search_query])
-
-
+def query_collection():
+    input("Enter a query string to use for the search: ")
 
 
 # This is the main program function.  It runs the main loop which prompts the user and performs the requested actions.
