@@ -1,5 +1,6 @@
 _author_ = 'Joshua Rhoades, jrhoades@email.unc.edu, Onyen = jrhoades'
 
+
 # Loads data for both books and movies, returning a dictionary with two keys, 'books' and 'movies', one for
 # each subset of the collection.
 def load_collections():
@@ -31,7 +32,8 @@ def load_collection(file_name):
             field_values = item.rstrip().split(",")
             collection_item = {}
             for index in range(len(field_values)):
-                if (field_names[index] == "Available") or (field_names[index] == "Copies") or (field_names[index] == "ID"):
+                if (field_names[index] == "Available") or (field_names[index] == "Copies") or (
+                        field_names[index] == "ID"):
                     collection_item[field_names[index]] = int(field_values[index])
                 else:
                     collection_item[field_names[index]] = field_values[index]
@@ -71,9 +73,11 @@ def prompt_user_with_menu():
     print("  x          Exit")
     return input("Please enter a command to proceed: ")
 
+
 # Checks in an item
 def check_in():
     print("Enter the ID for the item you wish to check in: ")
+
 
 # Checks out an item
 def check_out():
@@ -85,27 +89,74 @@ def check_out():
 
 # Adds a new book
 def new_book():
-    return None
-
+    print("Please enter the following attributes for the new book.")
+    new_title = input("Title: ")
+    new_author = input("Author: ")
+    new_publisher = input("Publisher: ")
+    new_pages = input("Pages: ")
+    new_year = input("Year: ")
+    new_copies = input("Copies: ")
+    new_available = input("Available: ")
+    print("You have entered the following data:")
+    print(new_title)
+    print(new_author)
+    print(new_publisher)
+    print(new_pages)
+    print(new_year)
+    print(new_copies)
+    print(new_available)
 
 # Adds a new movie
 def new_movie():
-    return None
+    print("Please enter the following attributes for the new movie.")
+    new_title = input("Title: ")
+    new_director = input("Director: ")
+    new_genre = input("Genre: ")
+    new_length = input("Length: ")
+    new_year = input("Year: ")
+    new_copies = input("Copies: ")
+    new_available = input("Available: ")
+    print("You have entered the following data:")
+    print(new_title)
+    print(new_director)
+    print(new_genre)
+    print(new_length)
+    print(new_year)
+    print(new_copies)
+    print(new_available)
+
 
 # Displays the items in the collection
 def display_collection(load_collections):
 
-    for key in load_collections:
-        print(key)
-        print(load_collections[key])
-        # print("ID: "[load_collections(0)])
-        # print(("Title:" ))
-        # print("\n")
-        # print(load_collections)
+    # Displays the book and movie collection
+    for key in load_collections.values():
+        print("ID: ", key['ID'])
+        print("Title:", key['Title'])
+        if key == ['Author']:
+            print("Author:", key['Author'])
+        else:
+            print("Director:", key['Director'])
+        if key == ['Publisher']:
+            print("Publisher:", key['Publisher'])
+        else:
+            print("Genre:", key['Genre'])
+        if key == ['Pages']:
+            print("Pages:", key['Pages'])
+        else:
+            print("Length:", key['Length'])
+        print("Year:", key['Year'])
+        print("Copies:", key['Copies'])
+        print("Available:", key['Available'])
+        print('\n')
 
-#
-def query_collection():
-    print("Enter a query string to use for the search: ")
+
+# Search for a certain parameter
+def query_collection(load_collections):
+    # Will match the string to the book and movie collection
+    search_query = input("Enter a query string to use for the search: ")
+    if search_query in load_collections:
+        print(load_collections[search_query])
 
 
 
