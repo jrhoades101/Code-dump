@@ -1,9 +1,9 @@
 _author_ = 'Joshua Rhoades, jrhoades@email.unc.edu, Onyen = jrhoades'
 
+
 # Loads data for both books and movies, returning a dictionary with two keys, 'books' and 'movies', one for
 # each subset of the collection.
 def load_collections():
-    
     # Load the two collections.
     book_collection, max_book_id = load_collection("books.csv")
     movie_collection, max_movie_id = load_collection("movies.csv")
@@ -113,8 +113,6 @@ def check_in(library_collections):
                     print("Copies:", third_step['Copies'])
                     print("Available:", third_step['Available'])
                     print('\n')
-            else:
-                print("There was an error in checking out ")
 
 
 
@@ -163,7 +161,6 @@ def check_out(library_collections):
                     print("Copies:", third_step['Copies'])
                     print("Available:", third_step['Available'])
                     print('\n')
-
 
 
 # Adds a new book
@@ -218,7 +215,6 @@ def check_out(library_collections):
 
 # Displays the items in the collection
 def display_collection(library_collections):
-
     # Displays the book and movie collection
     for key in library_collections.values():
         print("ID: ", key['ID'])
