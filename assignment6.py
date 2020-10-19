@@ -79,25 +79,22 @@ def check_in(library_collections):
     # The program should prompt the user to enter an ID number.
     check_in_item = int(input("Enter the ID for the item you wish to check in: "))
 
-    # Iterates through the second level of the library_collections dictionary
+    # Iterates through the first and second levels of the library_collections dictionary
     for b_coll, b_info in library_collections.items():
 
+        # Iterates through the third level of the library_collections dictionary
         for key in b_info:
             second_step = key
             third_step = b_info[key]
-            # if check_in_item != second_step:
-            #     print("Error: can not find the ID you were looking for")
-            #     return
+
             if check_in_item == second_step:
                 if third_step['Available'] == third_step['Copies']:
                     print("All copies are already available, so this item can not be checked in.")
 
+                # If Available copies is less than total copies
                 if third_step['Available'] < third_step['Copies']:
                     print("Your check in has been successful.")
                     third_step['Available'] += 1
-                    # print(third_step['Available'])
-                    # print(third_step)
-
                     print("ID: ", third_step['ID'])
                     print("Title:", third_step['Title'])
                     try:
@@ -116,6 +113,8 @@ def check_in(library_collections):
                     print("Copies:", third_step['Copies'])
                     print("Available:", third_step['Available'])
                     print('\n')
+            else:
+                print("There was an error in checking out ")
 
 
 
@@ -124,19 +123,25 @@ def check_out(library_collections):
     # Asks the user to input the ID they wish to check out
     check_out_item = int(input("Enter the ID for the item you wish to check out: "))
 
-    # Iterates through the library_collections dictionary
+    # Iterates through the first and second levels of the library_collections dictionary
     for b_coll, b_info in library_collections.items():
 
-        # Iterates through the second level of the library_collections dictionary
+        # Iterates through the third level of the library_collections dictionary
         for key in b_info:
             second_step = key
             third_step = b_info[key]
             # if check_out_item != second_step:
             #     print("Error: can not find the ID you were looking for")
             #     return
+
+            # Matches the inputted ID number with all unique identifiers
             if check_out_item == second_step:
+
+                # If available copies is less than zero
                 if third_step['Available'] <= 0:
                     print("No copies of the item are available for check out.")
+
+                # If available copies is equal to total amount of copies or greater than zero
                 if third_step['Available'] == third_step['Copies'] or third_step['Available'] > 0:
                     print("Your check out has been successful.")
                     third_step['Available'] -= 1
@@ -265,39 +270,6 @@ def query_collection(library_collections):
                 print("Copies:", b_info['Copies'])
                 print("Available:", b_info['Available'])
                 print('\n')
-
-
-
-
-
-    # # Iterates through the second level of the library_collections dictionary
-    # for b_coll, b_info in library_collections.items():
-    #
-    #     for key in b_info:
-    #         second_step = key
-    #         third_step = b_info[key]
-    #         if query_search == second_step:
-    #             for key in library_collections.values():
-    #                 print("ID: ", key['ID'])
-    #                 print("Title:", key['Title'])
-    #                 try:
-    #                     print("Director:", key['Director'])
-    #                 except KeyError:
-    #                     print("Author:", key['Author'])
-    #                 try:
-    #                     print("Genre:", key['Genre'])
-    #                 except KeyError:
-    #                     print("Publisher:", key['Publisher'])
-    #                 try:
-    #                     print("Length:", key['Length'])
-    #                 except KeyError:
-    #                     print("Pages:", key['Pages'])
-    #                 print("Year:", key['Year'])
-    #                 print("Copies:", key['Copies'])
-    #                 print("Available:", key['Available'])
-    #                 print('\n')
-
-
 
 
 # This is the main program function.  It runs the main loop which prompts the user and performs the requested actions.
