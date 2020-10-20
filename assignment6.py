@@ -76,6 +76,7 @@ def prompt_user_with_menu():
 
 # Checks in an item
 def check_in(library_collections):
+    stop_loop = 0
     # The program should prompt the user to enter an ID number.
     check_in_item = int(input("Enter the ID for the item you wish to check in: "))
 
@@ -114,10 +115,17 @@ def check_in(library_collections):
                     print("Available:", third_step['Available'])
                     print('\n')
 
+                stop_loop += 1
+
+    # If ID does not match the inputted ID, return an error message
+    if stop_loop == 0:
+        print("Error: can not find the ID you were looking for.")
+
 
 
 # Checks out an item
 def check_out(library_collections):
+    stop_loop = 0
     # Asks the user to input the ID they wish to check out
     check_out_item = int(input("Enter the ID for the item you wish to check out: "))
 
@@ -128,9 +136,6 @@ def check_out(library_collections):
         for key in b_info:
             second_step = key
             third_step = b_info[key]
-            # if check_out_item != second_step:
-            #     print("Error: can not find the ID you were looking for")
-            #     return
 
             # Matches the inputted ID number with all unique identifiers
             if check_out_item == second_step:
@@ -161,6 +166,12 @@ def check_out(library_collections):
                     print("Copies:", third_step['Copies'])
                     print("Available:", third_step['Available'])
                     print('\n')
+
+                stop_loop += 1
+
+    # If ID does not match the inputted ID, return an error message
+    if stop_loop == 0:
+        print("Error: can not find the ID you were looking for.")
 
 
 # Adds a new book
