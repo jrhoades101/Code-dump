@@ -88,6 +88,7 @@ def check_in(library_collections):
             second_step = key
             third_step = b_info[key]
 
+            # If the inputted ID matches any of the ID numbers
             if check_in_item == second_step:
                 if third_step['Available'] == third_step['Copies']:
                     print("All copies are already available, so this item can not be checked in.")
@@ -113,14 +114,13 @@ def check_in(library_collections):
                     print("Year:", third_step['Year'])
                     print("Copies:", third_step['Copies'])
                     print("Available:", third_step['Available'])
-                    print('\n')
+                    print('')
 
                 stop_loop += 1
 
     # If ID does not match the inputted ID, return an error message
     if stop_loop == 0:
         print("Error: can not find the ID you were looking for.")
-
 
 
 # Checks out an item
@@ -139,7 +139,6 @@ def check_out(library_collections):
 
             # Matches the inputted ID number with all unique identifiers
             if check_out_item == second_step:
-
                 # If available copies is less than zero
                 if third_step['Available'] <= 0:
                     print("No copies of the item are available for check out.")
@@ -165,11 +164,11 @@ def check_out(library_collections):
                     print("Year:", third_step['Year'])
                     print("Copies:", third_step['Copies'])
                     print("Available:", third_step['Available'])
-                    print('\n')
+                    print('')
 
                 stop_loop += 1
 
-    # If ID does not match the inputted ID, return an error message
+    # If the stop_loop variable is equal to zero, print an error message
     if stop_loop == 0:
         print("Error: can not find the ID you were looking for.")
 
@@ -226,30 +225,49 @@ def check_out(library_collections):
 
 # Displays the items in the collection
 def display_collection(library_collections):
+    # i variable used to count each entry
+    i = 0
+
     # Displays the book and movie collection
-    for key in library_collections.values():
-        print("ID: ", key['ID'])
-        print("Title:", key['Title'])
+    for keys in library_collections.values():
+        print("ID: ", keys['ID'])
+        print("Title:", keys['Title'])
         try:
-            print("Director:", key['Director'])
+            print("Director:", keys['Director'])
         except KeyError:
-            print("Author:", key['Author'])
+            print("Author:", keys['Author'])
         try:
-            print("Genre:", key['Genre'])
+            print("Genre:", keys['Genre'])
         except KeyError:
-            print("Publisher:", key['Publisher'])
+            print("Publisher:", keys['Publisher'])
         try:
-            print("Length:", key['Length'])
+            print("Length:", keys['Length'])
         except KeyError:
-            print("Pages:", key['Pages'])
-        print("Year:", key['Year'])
-        print("Copies:", key['Copies'])
-        print("Available:", key['Available'])
-        print('\n')
+            print("Pages:", keys['Pages'])
+        print("Year:", keys['Year'])
+        print("Copies:", keys['Copies'])
+        print("Available:", keys['Available'])
+        print('')
+        i += 1
+
+        # While i is equal to ten, print the input statement
+        while i == 10:
+
+            # Resets the i variable to zero
+            i = 0
+            continue_input = input("Press enter to show more items, or type 'm' to return to the menu: ")
+            if continue_input == 'm':
+                return prompt_user_with_menu()
+            elif continue_input == '':
+                i = 0
+            else:
+                return print("Error: Invalid input detected.")
 
 
 # Search for a certain parameter
 def query_collection(library_collections):
+
+    # Asks the user to input a query string
     query_search = str(input("Enter a query string to use for the search: "))
 
     for b_coll, b_info in library_collections.items():
@@ -258,6 +276,7 @@ def query_collection(library_collections):
         for key in b_info:
             third_step = str(b_info[key])
 
+            # Searches to see if the query search matches in the details
             if query_search.lower() in third_step.lower():
                 print("ID: ", b_info['ID'])
                 print("Title:", b_info['Title'])
@@ -276,7 +295,7 @@ def query_collection(library_collections):
                 print("Year:", b_info['Year'])
                 print("Copies:", b_info['Copies'])
                 print("Available:", b_info['Available'])
-                print('\n')
+                print('')
 
 
 # This is the main program function.  It runs the main loop which prompts the user and performs the requested actions.
