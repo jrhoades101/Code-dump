@@ -174,53 +174,68 @@ def check_out(library_collections):
 
 
 # Adds a new book
-# def add_book(library_collections(["books"]), max_existing_id]):
-#     library_collections, max_existing_id = load_collections()
-#     print("Please enter the following attributes for the new book.")
-#     # new_title = input("Title: ")
-#     # new_author = input("Author: ")
-#     # new_publisher = input("Publisher: ")
-#     # new_pages = input("Pages: ")
-#     # new_year = input("Year: ")
-#     # new_copies = input("Copies: ")
-#     # new_available = input("Available: ")
-#     # print("You have entered the following data:")
-#     # print(new_title)
-#     # print(new_author)
-#     # print(new_publisher)
-#     # print(new_pages)
-#     # print(new_year)
-#     # print(new_copies)
-#     # print(new_available)
+def add_book(library_collections, max_existing_id):
+
+    for keys in library_collections.values():
+        print(max_existing_id)
+        print(keys)
+
+    # print("Please enter the following attributes for the new book.")
+    # new_title = input("Title: ")
+    # new_author = input("Author: ")
+    # new_publisher = input("Publisher: ")
+    # new_pages = input("Pages: ")
+    # new_year = input("Year: ")
+    # new_copies = input("Copies: ")
+    # new_available = input("Available: ")
+    # print("You have entered the following data:")
+    # print(new_title)
+    # print(new_author)
+    # print(new_publisher)
+    # print(new_pages)
+    # print(new_year)
+    # print(new_copies)
+    # print(new_available)
 
 
 # Adds a new movie
-# def add_movie(library_collections(["movies"]), max_existing_id):
-#     library_collections, max_existing_id = load_collections()
-#     print("Please enter the following attributes for the new movie.")
-#     # print(load_collections())
-#     # new_title = input("Title: ")
-#     # load_collections(['Title']) = new_title
-#     # new_director = input("Director: ")
-#     # load_collections(['Director']) = new_director
-#     # new_genre = input("Genre: ")
-#     # load_collections(['Genre']) = new_genre
-#     # new_length = input("Length: ")
-#     # load_collections(['Length']) = new_length
-#     # new_year = input("Year: ")
-#     # load_collections(['Year']) = new_year
-#     # new_copies = input("Copies: ")
-#     # load_collections(['Copies']) = new_copies
-#     # new_available = input("Available: ")
-#     # load_collections(['Available']) = new_available
-#     # print("You have entered the following data:")
-#     # print('Title: ', new_title)
-#     # print('Director: ', new_director)
-#     # print('Genre: ', new_genre)
-#     # print('Length: ', new_length)
-#     # print('Year: ', new_year)
-#     # print('Copies: ', new_copies)
-#     # print('Available: ', new_available)
+def add_movie(library_collections, max_existing_id):
+    new_dict = {}
+    new_dict = library_collections
+    new_dict['Info'] = library_collections
+    for keys in library_collections.values():
+        new_dict = keys
+        # new_dict['Info'] = keys
+        # print(new_dict)
+    print(new_dict)
+    print(keys)
+    print(library_collections)
+
+
+
+    # print("Please enter the following attributes for the new movie.")
+    # new_title = input("Title: ")
+    # load_collections(['Title']) = new_title
+    # new_director = input("Director: ")
+    # load_collections(['Director']) = new_director
+    # new_genre = input("Genre: ")
+    # load_collections(['Genre']) = new_genre
+    # new_length = input("Length: ")
+    # load_collections(['Length']) = new_length
+    # new_year = input("Year: ")
+    # load_collections(['Year']) = new_year
+    # new_copies = input("Copies: ")
+    # load_collections(['Copies']) = new_copies
+    # new_available = input("Available: ")
+    # load_collections(['Available']) = new_available
+    # print("You have entered the following data:")
+    # print('Title: ', new_title)
+    # print('Director: ', new_director)
+    # print('Genre: ', new_genre)
+    # print('Length: ', new_length)
+    # print('Year: ', new_year)
+    # print('Copies: ', new_copies)
+    # print('Available: ', new_available)
 
 
 # Displays the items in the collection
