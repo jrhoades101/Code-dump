@@ -76,6 +76,7 @@ def prompt_user_with_menu():
 
 # Checks in an item
 def check_in(library_collections):
+
     stop_loop = 0
     # The program should prompt the user to enter an ID number.
     check_in_item = int(input("Enter the ID for the item you wish to check in: "))
@@ -176,66 +177,81 @@ def check_out(library_collections):
 # Adds a new book
 def add_book(library_collections, max_existing_id):
 
-    for keys in library_collections.values():
-        print(max_existing_id)
-        print(keys)
+    # Updates the max existing ID
+    max_existing_id = 57122
+    max_existing_id += 1
 
-    # print("Please enter the following attributes for the new book.")
-    # new_title = input("Title: ")
-    # new_author = input("Author: ")
-    # new_publisher = input("Publisher: ")
-    # new_pages = input("Pages: ")
-    # new_year = input("Year: ")
-    # new_copies = input("Copies: ")
-    # new_available = input("Available: ")
-    # print("You have entered the following data:")
-    # print(new_title)
-    # print(new_author)
-    # print(new_publisher)
-    # print(new_pages)
-    # print(new_year)
-    # print(new_copies)
-    # print(new_available)
+    # Asks the user to input the book details
+    print("Please enter the following attributes for the new book.")
+    new_title = input("Title: ")
+    new_author = input("Author: ")
+    new_publisher = input("Publisher: ")
+    new_pages = input("Pages: ")
+    new_year = input("Year: ")
+    new_copies = int(input("Copies: "))
+
+    # Shows the details that were entered to ensure accuracy
+    print("You have entered the following data:")
+    print("ID: ", max_existing_id)
+    print("Title: ", new_title)
+    print("Author: ", new_author)
+    print("Publisher: ", new_publisher)
+    print("Pages: ", new_pages)
+    print("Year: ", new_year)
+    print("Copies: ", new_copies)
+    print("Available: ", new_copies)
+
+    # Asks the user if they want to add the details to the dictionary
+    add_to_collection = input("Press enter to add this book to the collection.  Enter 'x' to cancel. ")
+
+    # Adds the book details to the dictionary if the user hits enter
+    if add_to_collection == '':
+        library_collections[max_existing_id] = {'Title': str(new_title), 'Author': str(new_author),
+        'Publisher': str(new_publisher), 'Pages': str(new_pages), 'Year': str(new_year),
+        'Copies': int(new_copies), 'Available': int(new_copies), 'ID': max_existing_id}
+        print("Your book has been added.")
+    else:
+        return print("Your book was not added.")
 
 
 # Adds a new movie
 def add_movie(library_collections, max_existing_id):
-    new_dict = {}
-    new_dict = library_collections
-    new_dict['Info'] = library_collections
-    for keys in library_collections.values():
-        new_dict = keys
-        # new_dict['Info'] = keys
-        # print(new_dict)
-    print(new_dict)
-    print(keys)
-    print(library_collections)
 
+    # Updates the max existing ID
+    max_existing_id = 57122
+    max_existing_id += 1
 
+    # Asks the user to input the book details
+    print("Please enter the following attributes for the new movie.")
+    new_title = input("Title: ")
+    new_director = input("Director: ")
+    new_genre = input("Genre: ")
+    new_length = input("Length: ")
+    new_year = input("Year: ")
+    new_copies = int(input("Copies: "))
 
-    # print("Please enter the following attributes for the new movie.")
-    # new_title = input("Title: ")
-    # load_collections(['Title']) = new_title
-    # new_director = input("Director: ")
-    # load_collections(['Director']) = new_director
-    # new_genre = input("Genre: ")
-    # load_collections(['Genre']) = new_genre
-    # new_length = input("Length: ")
-    # load_collections(['Length']) = new_length
-    # new_year = input("Year: ")
-    # load_collections(['Year']) = new_year
-    # new_copies = input("Copies: ")
-    # load_collections(['Copies']) = new_copies
-    # new_available = input("Available: ")
-    # load_collections(['Available']) = new_available
-    # print("You have entered the following data:")
-    # print('Title: ', new_title)
-    # print('Director: ', new_director)
-    # print('Genre: ', new_genre)
-    # print('Length: ', new_length)
-    # print('Year: ', new_year)
-    # print('Copies: ', new_copies)
-    # print('Available: ', new_available)
+    # Shows the details that were entered to ensure accuracy
+    print("You have entered the following data:")
+    print("ID: 57123")
+    print("Title: ", new_title)
+    print("Director: ", new_director)
+    print("Genre: ", new_genre)
+    print("Length: ", new_length)
+    print("Year: ", new_year)
+    print("Copies: ", new_copies)
+    print("Available: ", new_copies)
+
+    # Asks the user if they want to add the details to the dictionary
+    add_to_collection = input("Press enter to add this movie to the collection.  Enter 'x' to cancel. ")
+
+    # Adds the book details to the dictionary if the user hits enter
+    if add_to_collection == '':
+        library_collections[max_existing_id] = {'Title': str(new_title), 'Director': str(new_director),
+        'Genre': str(new_genre), 'Length': str(new_length), 'Year': str(new_year),
+        'Copies': int(new_copies), 'Available': int(new_copies), 'ID': 57123}
+        print("Your movie has been added.")
+    else:
+        return print("Your movie was not added.")
 
 
 # Displays the items in the collection
