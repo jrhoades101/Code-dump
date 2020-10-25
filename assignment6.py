@@ -75,8 +75,8 @@ def prompt_user_with_menu():
 
 # Checks in an item
 def check_in(library_collections):
-
     stop_loop = 0
+
     # The program should prompt the user to enter an ID number.
     check_in_item = int(input("Enter the ID for the item you wish to check in: "))
 
@@ -126,6 +126,7 @@ def check_in(library_collections):
 # Checks out an item
 def check_out(library_collections):
     stop_loop = 0
+
     # Asks the user to input the ID they wish to check out
     check_out_item = int(input("Enter the ID for the item you wish to check out: "))
 
@@ -175,7 +176,6 @@ def check_out(library_collections):
 
 # Adds a new book
 def add_book(library_collections, max_existing_id):
-
     # Asks the user to input the book details
     print("Please enter the following attributes for the new book.")
     new_title = input("Title: ")
@@ -199,22 +199,21 @@ def add_book(library_collections, max_existing_id):
     # Asks the user if they want to add the details to the dictionary
     add_to_collection = input("Press enter to add this book to the collection.  Enter 'x' to cancel. ")
 
-    # Adds the book details to the dictionary if the user hits enter
+    # Adds the specific book details to the dictionary if the user hits enter
     if add_to_collection == '':
         library_collections[max_existing_id + 1] = {'Title': str(new_title), 'Author': str(new_author),
         'Publisher': str(new_publisher), 'Pages': str(new_pages), 'Year': str(new_year),
         'Copies': int(new_copies), 'Available': int(new_copies), 'ID': max_existing_id + 1}
         print("Your book has been added.")
+
+        # Updates the max existing ID
         max_existing_id = max_existing_id + 1
-        print(max_existing_id)
     else:
         return print("Your book was not added.")
 
 
 # Adds a new movie
 def add_movie(library_collections, max_existing_id):
-
-
     # Asks the user to input the movie details
     print("Please enter the following attributes for the new movie.")
     new_title = input("Title: ")
@@ -238,13 +237,15 @@ def add_movie(library_collections, max_existing_id):
     # Asks the user if they want to add the details to the dictionary
     add_to_collection = input("Press enter to add this movie to the collection.  Enter 'x' to cancel. ")
 
-    # Adds the movie details to the dictionary if the user hits enter
+    # Adds the specific movie details to the dictionary if the user hits enter
     if add_to_collection == '':
         library_collections[max_existing_id + 1] = {'Title': str(new_title), 'Director': str(new_director),
         'Genre': str(new_genre), 'Length': str(new_length), 'Year': str(new_year),
         'Copies': int(new_copies), 'Available': int(new_copies), 'ID': max_existing_id + 1}
         print("Your movie has been added.")
-        print(max_existing_id)
+
+        # Updates the max existing ID
+        max_existing_id = max_existing_id + 1
     else:
         return print("Your movie was not added.")
 
@@ -255,7 +256,7 @@ def display_collection(library_collections):
     # Variable is used to initialize the count
     count = 0
 
-    # Displays the book and movie collection
+    # Displays the collection
     for keys in library_collections.values():
         print("ID: ", keys['ID'])
         print("Title:", keys['Title'])
@@ -277,14 +278,14 @@ def display_collection(library_collections):
         print('')
         count += 1
 
-        # While i is equal to ten, print the input statement
+        # While count is equal to ten, asks the user if they want more items printed
         while count == 10:
 
-            # Resets the count to zero
+            # Resets the count to zero, causing it to close out of the loop
             count = 0
             continue_input = input("Press enter to show more items, or type 'm' to return to the menu: ")
             if continue_input == 'm':
-                return prompt_user_with_menu()
+                return 
             elif continue_input == '':
                 count = 0
             else:
@@ -293,10 +294,10 @@ def display_collection(library_collections):
 
 # Search for a certain parameter
 def query_collection(library_collections):
-
     # Asks the user to input a query string
     query_search = str(input("Enter a query string to use for the search: "))
 
+    # Iterates through the dictionary
     for b_coll, b_info in library_collections.items():
 
         # Iterates through the second level of keys in the dictionary
@@ -340,15 +341,11 @@ def main():
     count = 0
     operation = prompt_user_with_menu()
     while operation != "x":
+
+        # Uses a duplicate library collection to update the max id without updating the main one
         library_collections1, max_existing_id = load_collections()
         max_existing_id += count
 
-        # FOR ADVANCED REQUIREMENTS:
-        #
-        # Notice the "max_existing_id" variable?  When adding a new book or movie to the collection, you'll need to
-        # assign the new item a unique ID number.  This variable is included to make that easier for you to achieve.
-        # Remember, if you assign a new ID to a new item, be sure to keep "max_existing_id" up to date!
-        #
         if operation == "ci":
             check_in(library_collections)
         elif operation == "co":
