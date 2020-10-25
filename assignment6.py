@@ -178,17 +178,21 @@ def check_out(library_collections):
 def add_book(library_collections, max_existing_id):
 
     # Updates the max existing ID
-    max_existing_id = 57122
-    max_existing_id += 1
+    # max_existing_id = 57122
+
 
     # Asks the user to input the book details
     print("Please enter the following attributes for the new book.")
+    count = 0
     new_title = input("Title: ")
     new_author = input("Author: ")
     new_publisher = input("Publisher: ")
     new_pages = input("Pages: ")
     new_year = input("Year: ")
     new_copies = int(input("Copies: "))
+
+    while count == 0:
+        max_existing_id += 1
 
     # Shows the details that were entered to ensure accuracy
     print("You have entered the following data:")
