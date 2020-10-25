@@ -1,6 +1,5 @@
 _author_ = 'Joshua Rhoades, jrhoades@email.unc.edu, Onyen = jrhoades'
 
-
 # Loads data for both books and movies, returning a dictionary with two keys, 'books' and 'movies', one for
 # each subset of the collection.
 def load_collections():
@@ -177,13 +176,8 @@ def check_out(library_collections):
 # Adds a new book
 def add_book(library_collections, max_existing_id):
 
-    # Updates the max existing ID
-    # max_existing_id = 57122
-
-
     # Asks the user to input the book details
     print("Please enter the following attributes for the new book.")
-    count = 0
     new_title = input("Title: ")
     new_author = input("Author: ")
     new_publisher = input("Publisher: ")
@@ -191,12 +185,9 @@ def add_book(library_collections, max_existing_id):
     new_year = input("Year: ")
     new_copies = int(input("Copies: "))
 
-    while count == 0:
-        max_existing_id += 1
-
     # Shows the details that were entered to ensure accuracy
     print("You have entered the following data:")
-    print("ID: ", max_existing_id)
+    print("ID: ", max_existing_id + 1)
     print("Title: ", new_title)
     print("Author: ", new_author)
     print("Publisher: ", new_publisher)
@@ -210,10 +201,12 @@ def add_book(library_collections, max_existing_id):
 
     # Adds the book details to the dictionary if the user hits enter
     if add_to_collection == '':
-        library_collections[max_existing_id] = {'Title': str(new_title), 'Author': str(new_author),
+        library_collections[max_existing_id + 1] = {'Title': str(new_title), 'Author': str(new_author),
         'Publisher': str(new_publisher), 'Pages': str(new_pages), 'Year': str(new_year),
-        'Copies': int(new_copies), 'Available': int(new_copies), 'ID': max_existing_id}
+        'Copies': int(new_copies), 'Available': int(new_copies), 'ID': max_existing_id + 1}
         print("Your book has been added.")
+        max_existing_id = max_existing_id + 1
+        print(max_existing_id)
     else:
         return print("Your book was not added.")
 
@@ -221,11 +214,8 @@ def add_book(library_collections, max_existing_id):
 # Adds a new movie
 def add_movie(library_collections, max_existing_id):
 
-    # Updates the max existing ID
-    max_existing_id = 57122
-    max_existing_id += 1
 
-    # Asks the user to input the book details
+    # Asks the user to input the movie details
     print("Please enter the following attributes for the new movie.")
     new_title = input("Title: ")
     new_director = input("Director: ")
@@ -236,7 +226,7 @@ def add_movie(library_collections, max_existing_id):
 
     # Shows the details that were entered to ensure accuracy
     print("You have entered the following data:")
-    print("ID: 57123")
+    print("ID: ", max_existing_id + 1)
     print("Title: ", new_title)
     print("Director: ", new_director)
     print("Genre: ", new_genre)
@@ -248,20 +238,22 @@ def add_movie(library_collections, max_existing_id):
     # Asks the user if they want to add the details to the dictionary
     add_to_collection = input("Press enter to add this movie to the collection.  Enter 'x' to cancel. ")
 
-    # Adds the book details to the dictionary if the user hits enter
+    # Adds the movie details to the dictionary if the user hits enter
     if add_to_collection == '':
-        library_collections[max_existing_id] = {'Title': str(new_title), 'Director': str(new_director),
+        library_collections[max_existing_id + 1] = {'Title': str(new_title), 'Director': str(new_director),
         'Genre': str(new_genre), 'Length': str(new_length), 'Year': str(new_year),
-        'Copies': int(new_copies), 'Available': int(new_copies), 'ID': 57123}
+        'Copies': int(new_copies), 'Available': int(new_copies), 'ID': max_existing_id + 1}
         print("Your movie has been added.")
+        print(max_existing_id)
     else:
         return print("Your movie was not added.")
 
 
 # Displays the items in the collection
 def display_collection(library_collections):
-    # i variable used to count each entry
-    i = 0
+
+    # Variable is used to initialize the count
+    count = 0
 
     # Displays the book and movie collection
     for keys in library_collections.values():
@@ -283,18 +275,18 @@ def display_collection(library_collections):
         print("Copies:", keys['Copies'])
         print("Available:", keys['Available'])
         print('')
-        i += 1
+        count += 1
 
         # While i is equal to ten, print the input statement
-        while i == 10:
+        while count == 10:
 
-            # Resets the i variable to zero
-            i = 0
+            # Resets the count to zero
+            count = 0
             continue_input = input("Press enter to show more items, or type 'm' to return to the menu: ")
             if continue_input == 'm':
                 return prompt_user_with_menu()
             elif continue_input == '':
-                i = 0
+                count = 0
             else:
                 return print("Error: Invalid input detected.")
 
@@ -307,11 +299,11 @@ def query_collection(library_collections):
 
     for b_coll, b_info in library_collections.items():
 
-        # Iterates through the second level of the library_collections dictionary
+        # Iterates through the second level of keys in the dictionary
         for key in b_info:
             third_step = str(b_info[key])
 
-            # Searches to see if the query search matches in the details
+            # Searches to see if the query search matches any of the collections
             if query_search.lower() in third_step.lower():
                 print("ID: ", b_info['ID'])
                 print("Title:", b_info['Title'])
@@ -345,42 +337,28 @@ def main():
 
     # Display the error and get the operation code entered by the user.  We perform this continuously until the
     # user enters "x" to exit the program.  Calls the appropriate function that corresponds to the requested operation.
-
+    count = 0
     operation = prompt_user_with_menu()
     while operation != "x":
-        ###############################################################################################################
-        ###############################################################################################################
-        # HINTS HINTS HINTS!!! READ THE FOLLOWING SECTION OF COMMENTS!
-        ###############################################################################################################
-        ###############################################################################################################
-        #
-        # The commented-out code below gives you a some good hints about how to structure your code.
-        #
-        # FOR BASIC REQUIREMENTS:
-        #
-        # Notice that each operation is supported by a function.  That is good design, and you should use this approach.
-        # Moreover, you will want to define even MORE functions to help break down these top-level user operations into
-        # even smaller chunks that are easier to code.
-        #
+        library_collections1, max_existing_id = load_collections()
+        max_existing_id += count
+
         # FOR ADVANCED REQUIREMENTS:
         #
         # Notice the "max_existing_id" variable?  When adding a new book or movie to the collection, you'll need to
         # assign the new item a unique ID number.  This variable is included to make that easier for you to achieve.
         # Remember, if you assign a new ID to a new item, be sure to keep "max_existing_id" up to date!
         #
-        # Have questions? Ask on Piazza!
-        #
-        ###############################################################################################################
-        ###############################################################################################################
-
         if operation == "ci":
             check_in(library_collections)
         elif operation == "co":
             check_out(library_collections)
         elif operation == "ab":
             max_existing_id = add_book(library_collections["books"], max_existing_id)
+            count += 1
         elif operation == "am":
             max_existing_id = add_movie(library_collections["movies"], max_existing_id)
+            count += 1
         elif operation == "db":
             display_collection(library_collections["books"])
         elif operation == "dm":
