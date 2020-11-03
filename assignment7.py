@@ -1,7 +1,5 @@
 _author_ = 'Joshua Rhoades, jrhoades@email.unc.edu, Onyen = jrhoades'
 
-_author_ = 'Joshua Rhoades, jrhoades@email.unc.edu, Onyen = jrhoades'
-
 import random
 
 
