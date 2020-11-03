@@ -1,6 +1,9 @@
 _author_ = 'Joshua Rhoades, jrhoades@email.unc.edu, Onyen = jrhoades'
 
+_author_ = 'Joshua Rhoades, jrhoades@email.unc.edu, Onyen = jrhoades'
+
 import random
+
 
 # The BattleshipGame class is the top level class.  A game is created for 1 or 2 players, then the game is played
 # until there is a winner.
@@ -47,7 +50,7 @@ class BattleshipGame:
                     print("Game over!", self.players[1].player_name, "wins!")
 
             # Swap the turn so that the other player goes on the next iteration.
-            # first_players_turn = not first_players_turn
+            first_players_turn = not first_players_turn
 
 
 # The Board class manages the 10x10 grid that contains each player's boats.  The board has cells, each of which
@@ -175,6 +178,9 @@ class HumanPlayer:
         self.fleet = [Boat("Aircraft Carrier", 5), Boat("Battleship", 4), Boat("Submarine", 3), Boat("Destroyer", 3), \
                       Boat("Patrol Boat", 2)]
         self.opponent = None
+        self.attack_count = 0
+        self.hit_count = 0
+        self.miss_count = 0
 
     # Link the player to his/her opponent.
     def set_opponent(self, opponent):
@@ -216,6 +222,7 @@ class HumanPlayer:
                 y = int(coords[1])
                 boat.set_orientation(orientation)
                 boat.set_position(x,y)
+
                 # Add the boat to the board.
                 if not self.board.add_boat(boat):
                     # The board refused to add the boat!!! Raise an exception so that the user is forced
@@ -242,6 +249,8 @@ class HumanPlayer:
         position = None
         while position is None:
             try:
+                print("You have attacked", self.attack_count, "times with", self.hit_count, "hits and", self.miss_count,
+                      "misses.")
                 position = input("Please enter the position you would like to attack.  Use the form x,y (e.g., 1,3): ")
                 coords = position.split(",")
                 x = int(coords[0])
@@ -253,11 +262,15 @@ class HumanPlayer:
                       "0-9. Please try again.")
                 position = None
 
+
         # Perform attack
+        self.attack_count += 1
         hit_flag = self.opponent.board.attack(x, y)
         if hit_flag:
+            self.hit_count += 1
             print("You hit a boat!")
         else:
+            self.miss_count += 1
             print("You missed.")
 
         # Return true if the opponent has been defeated.  Otherwise, false.
@@ -265,7 +278,6 @@ class HumanPlayer:
             return True
         else:
             return False
-
 
 class ComputerPlayer:
     # Initialize the player with a name, a blank board, and a fleet of five boats.
@@ -280,68 +292,78 @@ class ComputerPlayer:
     def set_opponent(self, opponent):
         self.opponent = opponent
 
-    # Position the fleet, one boat at a time.
+
     def position_fleet(self):
         # Position the boats.
         for boat in self.fleet:
             self.position_boat(boat)
 
 
-    # Positions a single boat.  Helper method for positionFleet
     def position_boat(self, boat):
-
+        # Show the board as it exists before this boat is positioned.
+        # print(self.board)
+        # print("You need to position a", boat.label, "of length", boat.size, "on the board above.")
         # Ask the user to say if the boat is horizontal or vertical.
-        # orientation = None
+        orientation = None
         # while orientation is None:
         #     orientation = input("Would you like to use a vertical or horizontal orientation? (v/h) ")
         #     if (orientation != "v") and (orientation != "h"):
         #         print("You must enter a 'v' or a 'h'.  Please try again.")
         #         orientation = None
-
-        orientation = random.randint(0,9)
-        if orientation == 0:
-            orientation == "v"
+        random_orientation = random.randint(0,1)
+        if random_orientation == 0:
+            orientation = "v"
         else:
-            orientation == "h"
-        # Randomly pick the top-left position of the boat.
+            orientation = "h"
+        # Ask the user for the top-left position of the boat.
+        # position = None
+        # while position is None:
+        #     try:
+                # position = input("Please enter the position for the top-left location of the boat. " + \
+                #                  " Use the form x,y (e.g., 1,3): ")
+                # coords = position.split(",")
         x = int(random.randint(0, 9))
         y = int(random.randint(0, 9))
         boat.set_orientation(orientation)
-        if x != None and y != None:
-            boat.set_position(x, y)
-            # Add the boat to the board.
-            # if not self.board.add_boat(boat):
-            #     # The board refused to add the boat!!! Raise an exception so that the user is forced
-            #     # to try a new position.
-            #     raise Exception
-        # except ValueError:
-        #     print("You must a valid position for the boat.  Please try again.")
+        boat.set_position(x,y)
+            #     # Add the boat to the board.
+            #     if not self.board.add_boat(boat):
+            #         # The board refused to add the boat!!! Raise an exception so that the user is forced
+            #         # to try a new position.
+            #         raise Exception
+            # except ValueError:
+            #     print("You must a valid position for the boat.  Please try again.")
+            #     position = None
+            # except:
+            #     print("You must choose a position that is (a) on the board and (b) doesn't intersect" + \
+            #           "with any other boats.")
+            #     position = None
 
-        # except:
-        #     print("You must choose a position that is (a) on the board and (b) doesn't intersect" + \
-        #           "with any other boats.")
 
-
-
-    # This function managers a single turn for the player.
     def take_turn(self):
         # Display boards.
-        print(self.player_name + "'s board:")
-        print(self.board)
-        print()
-        print("Your view of " + self.opponent.player_name + "'s board:")
+        # print(self.player_name + "'s board:")
+        # print(self.board)
+        # print()
+        # print("Your view of " + self.opponent.player_name + "'s board:")
         # print(self.opponent.board.get_public_view())
 
         # Get attack position.
+        # position = None
+        # while position is None:
+        #     try:
+                # position = input(
+                #     "Please enter the position you would like to attack.  Use the form x,y (e.g., 1,3): ")
+                # coords = position.split(",")
         x = int(random.randint(0,9))
         y = int(random.randint(0,9))
-        if (x < 0) or (x > 9) or (y < 0) or (y > 9):
-            raise Exception
-
+            #     if (x < 0) or (x > 9) or (y < 0) or (y > 9):
+            #         print("test at while loop")
+            # except:
+            #     print("Test at except")
 
         # Perform attack
         hit_flag = self.opponent.board.attack(x, y)
-
         if hit_flag:
             print("The computer attacked", hit_flag, "and hit a boat!")
         else:
@@ -352,4 +374,3 @@ class ComputerPlayer:
             return True
         else:
             return False
-
