@@ -301,78 +301,41 @@ class ComputerPlayer:
 
     # Positions a single boat.  Helper method for positionFleet
     def position_boat(self, boat):
-        # Show the board as it exists before this boat is positioned.
-        # print(self.board)
-        # print("You need to position a", boat.label, "of length", boat.size, "on the board above.")
-        # Ask the user to say if the boat is horizontal or vertical.
-        orientation = None
-        # while orientation is None:
-        #     orientation = input("Would you like to use a vertical or horizontal orientation? (v/h) ")
-        #     if (orientation != "v") and (orientation != "h"):
-        #         print("You must enter a 'v' or a 'h'.  Please try again.")
-        #         orientation = None
-        random_orientation = random.randint(0,1)
+        # Randomly decides if the boat is Vertical or Horizontal.
+        random_orientation = random.randint(0, 1)
         if random_orientation == 0:
             orientation = "v"
         else:
             orientation = "h"
 
         # Ask the user for the top-left position of the boat.
-        # position = None
-        # while position is None:
-        #     try:
-                # position = input("Please enter the position for the top-left location of the boat. " + \
-                #                  " Use the form x,y (e.g., 1,3): ")
-                # coords = position.split(",")
         if orientation == 'h':
             x = int(random.randint(0, 5))
-            y = int(random.randint(0, 5))
-            boat.set_orientation(orientation)
-            boat.set_position(x, y)
+            y = int(random.randint(0, 9))
+
         elif orientation == 'v':
-            x = int(random.randint(0, 5))
+            x = int(random.randint(0, 9))
             y = int(random.randint(0, 5))
+        boat.set_orientation(orientation)
+        boat.set_position(x, y)
+
+        # Re-rolls random boat position if a boat position is located on top of another one
+        while not self.board.add_boat(boat):
+            if orientation == 'h':
+                x = int(random.randint(0, 5))
+                y = int(random.randint(0, 9))
+
+            elif orientation == 'v':
+                x = int(random.randint(0, 9))
+                y = int(random.randint(0, 5))
             boat.set_orientation(orientation)
             boat.set_position(x, y)
-        # x = int(random.randint(0, 9))
-        # y = int(random.randint(0, 9))
-        #     boat.set_orientation(orientation)
-        #     boat.set_position(x,y)
-            #     # Add the boat to the board.
-        if not self.board.add_boat(boat):
-                    # The board refused to add the boat!!! Raise an exception so that the user is forced
-                    # to try a new position.
-            raise Exception
-            # except ValueError:
-            #     print("You must a valid position for the boat.  Please try again.")
-            #     position = None
-            # except:
-            #     print("You must choose a position that is (a) on the board and (b) doesn't intersect" + \
-            #           "with any other boats.")
-            #     position = None
 
     # This function managers a single turn for the player.
     def take_turn(self):
-        # Display boards.
-        # print(self.player_name + "'s board:")
-        # print(self.board)
-        # print()
-        # print("Your view of " + self.opponent.player_name + "'s board:")
-        # print(self.opponent.board.get_public_view())
-
         # Get attack position.
-        # position = None
-        # while position is None:
-        #     try:
-                # position = input(
-                #     "Please enter the position you would like to attack.  Use the form x,y (e.g., 1,3): ")
-                # coords = position.split(",")
         x = int(random.randint(0,9))
         y = int(random.randint(0,9))
-            #     if (x < 0) or (x > 9) or (y < 0) or (y > 9):
-            #         print("test at while loop")
-            # except:
-            #     print("Test at except")
 
         # Perform attack
         hit_flag = self.opponent.board.attack(x, y)
