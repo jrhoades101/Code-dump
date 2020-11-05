@@ -31,6 +31,8 @@ class BattleshipGame:
         self.players[1].position_fleet()
 
         # Next, begin the game.  Repeat the game-play loop as long as there is not a winner.
+        # if self.players == ComputerPlayer:
+        #     print("The computer has positioned its fleet")
         input("The boats are ready... it's time to play.  Press enter to begin!")
         winner = False
         first_players_turn = True
@@ -290,13 +292,14 @@ class ComputerPlayer:
     def set_opponent(self, opponent):
         self.opponent = opponent
 
-
+    # Position the fleet, one boat at a time.
     def position_fleet(self):
         # Position the boats.
+        print("The computer has positioned its fleet")
         for boat in self.fleet:
             self.position_boat(boat)
 
-
+    # Positions a single boat.  Helper method for positionFleet
     def position_boat(self, boat):
         # Show the board as it exists before this boat is positioned.
         # print(self.board)
@@ -313,6 +316,7 @@ class ComputerPlayer:
             orientation = "v"
         else:
             orientation = "h"
+
         # Ask the user for the top-left position of the boat.
         # position = None
         # while position is None:
@@ -320,15 +324,25 @@ class ComputerPlayer:
                 # position = input("Please enter the position for the top-left location of the boat. " + \
                 #                  " Use the form x,y (e.g., 1,3): ")
                 # coords = position.split(",")
-        x = int(random.randint(0, 9))
-        y = int(random.randint(0, 9))
-        boat.set_orientation(orientation)
-        boat.set_position(x,y)
+        if orientation == 'h':
+            x = int(random.randint(0, 5))
+            y = int(random.randint(0, 5))
+            boat.set_orientation(orientation)
+            boat.set_position(x, y)
+        elif orientation == 'v':
+            x = int(random.randint(0, 5))
+            y = int(random.randint(0, 5))
+            boat.set_orientation(orientation)
+            boat.set_position(x, y)
+        # x = int(random.randint(0, 9))
+        # y = int(random.randint(0, 9))
+        #     boat.set_orientation(orientation)
+        #     boat.set_position(x,y)
             #     # Add the boat to the board.
-            #     if not self.board.add_boat(boat):
-            #         # The board refused to add the boat!!! Raise an exception so that the user is forced
-            #         # to try a new position.
-            #         raise Exception
+        if not self.board.add_boat(boat):
+                    # The board refused to add the boat!!! Raise an exception so that the user is forced
+                    # to try a new position.
+            raise Exception
             # except ValueError:
             #     print("You must a valid position for the boat.  Please try again.")
             #     position = None
@@ -337,7 +351,7 @@ class ComputerPlayer:
             #           "with any other boats.")
             #     position = None
 
-
+    # This function managers a single turn for the player.
     def take_turn(self):
         # Display boards.
         # print(self.player_name + "'s board:")
@@ -363,9 +377,9 @@ class ComputerPlayer:
         # Perform attack
         hit_flag = self.opponent.board.attack(x, y)
         if hit_flag:
-            print("The computer attacked", hit_flag, "and hit a boat!")
+            print("The computer attacked", (x, y), "and hit a boat!")
         else:
-            print("The computer attacked", hit_flag, "and missed.")
+            print("The computer attacked", (x, y), "and missed.")
 
         # Return true if the opponent has been defeated.  Otherwise, false.
         if self.opponent.board.is_defeated():
