@@ -279,6 +279,8 @@ class HumanPlayer:
         else:
             return False
 
+
+# The ComputerPlayer class represents an automated computer player.
 class ComputerPlayer:
     # Initialize the player with a name, a blank board, and a fleet of five boats.
     def __init__(self, player_name):
@@ -292,34 +294,34 @@ class ComputerPlayer:
     def set_opponent(self, opponent):
         self.opponent = opponent
 
-    # Position the fleet, one boat at a time.
+    # Positions the fleet one boat at a time.
     def position_fleet(self):
         # Position the boats.
         print("The computer has positioned its fleet")
         for boat in self.fleet:
             self.position_boat(boat)
 
-    # Positions a single boat.  Helper method for positionFleet
+    # Positions a single boat,  Helper method for positionFleet.
     def position_boat(self, boat):
-        # Randomly decides if the boat is Vertical or Horizontal.
+        # Randomly decides boat's position between Vertical or Horizontal.
         random_orientation = random.randint(0, 1)
         if random_orientation == 0:
             orientation = "v"
         else:
             orientation = "h"
 
-        # Ask the user for the top-left position of the boat.
-        if orientation == 'h':
-            x = int(random.randint(0, 5))
-            y = int(random.randint(0, 9))
-
-        elif orientation == 'v':
+        # Randomly decides the top-left position of the boat for the computer player.
+        if orientation == 'v':
             x = int(random.randint(0, 9))
             y = int(random.randint(0, 5))
+        elif orientation == 'h':
+            x = int(random.randint(0, 5))
+            y = int(random.randint(0, 9))
         boat.set_orientation(orientation)
         boat.set_position(x, y)
 
-        # Re-rolls random boat position if a boat position is located on top of another one
+        # Re-rolls the random boat position until all boats are added to the board
+        # Loops if a boat position is already located on top of another one
         while not self.board.add_boat(boat):
             if orientation == 'h':
                 x = int(random.randint(0, 5))
@@ -331,7 +333,7 @@ class ComputerPlayer:
             boat.set_orientation(orientation)
             boat.set_position(x, y)
 
-    # This function managers a single turn for the player.
+    # This function manages a single turn for the player.
     def take_turn(self):
         # Get attack position.
         x = int(random.randint(0,9))
